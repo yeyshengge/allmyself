@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <!--<link rel="stylesheet" type="text/css" href="../css/AnLiTwo.css">-->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+        <!-- background-image: url("../img/register_bg.png");
+        --> background-repeat: no-repeat;
+        }
+
+        .out {
+            padding: 10px;
+            border: 8px solid rgb(238, 238, 238);
+            margin: auto;
+            width: 900px;
+            height: 600px;
+            margin-top: 20px;
+            background-color: white;
+        }
+
+        .left {
+            float: left;
+            width: 220px;
+            height: 200px;
+
+        }
+
+        .center {
+            margin-top: 50px;
+            float: left;
+            width: 480px;
+            height: 600px;
+
+        }
+
+        .right {
+            padding: 10px;
+            float: right;
+            width: 160px;
+
+
+        }
+
+        .left_frist {
+            margin: 15px;
+            font-size: 25px;
+            color: yellow;
+        }
+
+        .left_second {
+            margin-left: 15px;
+            margin-top: 5px;
+            font-size: 25px;
+            color: grey;
+        }
+
+        div a {
+            color: red;
+        }
+
+        div span {
+            float: right;
+        }
+
+        .td_left {
+            width: 80px;
+            text-align: right;
+        }
+
+        .td_right {
+            width: 100px;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        tr {
+            margin-top: 20px;
+        }
+
+        table input {
+            height: 30px;
+            width: 200px;
+            border-radius: 5px;
+            padding-left: 10px;
+        }
+
+        #in {
+            height: 15px;
+            width: 15px;
+        }
+
+        #in2 {
+            height: 15px;
+            width: 15px;
+        }
+
+        #yan {
+            width: 90px;
+
+        }
+
+        td {
+            padding-top: 20px;
+        }
+
+        .error {
+
+            color: red;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            document.getElementById("form").onsubmit = function () {
+
+                var t1 = check_u() && check_p();
+                var t2 = check_x() && check_s();
+
+                return t1 && t2 && check_y();
+            }
+            document.getElementById("username").onblur = check_u;
+            document.getElementById("password").onblur = check_p;
+            document.getElementById("name").onblur = check_x;
+            document.getElementById("phone").onblur = check_s;
+            document.getElementById("yan").onblur = check_y;
+        }
+
+        //检查用户名
+        function check_u() {
+            var username = document.getElementById("username").value;
+            var exp_u = /^\w{6,8}$/;
+            var u = exp_u.test(username);
+            var su = document.getElementById("su");
+            if (u) {
+                su.innerText = "√";
+                su.style.color = "green";
+            } else {
+                su.style.color = "red";
+                su.innerHTML = "输入有误";
+            }
+            return u;
+        }
+
+        //检查密码
+        function check_p() {
+            var password = document.getElementById("password").value;
+            var exp_p = /^\d{6,8}$/;
+            var p = exp_p.test(password);
+            var pu = document.getElementById("pu");
+            if (p) {
+                pu.innerText = "√";
+                pu.style.color = "green";
+            } else {
+                pu.style.color = "red";
+                pu.innerHTML = "输入有误";
+            }
+            return p;
+        }
+
+
+        //检查姓名
+        function check_x() {
+            var name = document.getElementById("name").value;
+            var exp_x = /^([\u4E00-\u9FA5]{1,5}){2,4}$/;
+            var x = exp_x.test(name);
+            var px = document.getElementById("px");
+            if (x) {
+                px.innerText = "√";
+                px.style.color = "green";
+            } else {
+                px.style.color = "red";
+                px.innerHTML = "输入有误";
+            }
+            return x;
+        }
+
+        //检查手机号
+        function check_s() {
+            var phone = document.getElementById("phone").value;
+            var exp_s = /^\d{11}$/;
+            var s = exp_s.test(phone);
+            var pp = document.getElementById("pp");
+            if (s) {
+                pp.innerText = "√";
+                pp.style.color = "green";
+            } else {
+                pp.style.color = "red";
+                pp.innerHTML = "输入有误";
+            }
+            return s;
+        }
+
+
+        //检查验证码
+        function check_y() {
+            var yan = document.getElementById("yan").value;
+            var exp_y =/^[a-zA-Z0-9]{4}$/;
+            var y = exp_y.test(yan);
+            var pc = document.getElementById("pc");
+            if (y) {
+                pc.innerText = "√";
+                pc.style.color = "green";
+            } else {
+                pc.style.color = "red";
+                pc.innerHTML = "输入有误";
+            }
+            return y;
+        }
+
+
+    </script>
+</head>
+<body>
+<div class="out">
+    <div class="left">
+        <div class="left_frist">新用户注册</div>
+        <div class="left_second">USER REGISTER</div>
+    </div>
+
+    <div class="center">
+        <form action="#" method="get" id="form">
+            <table width="400px">
+                <!-- 用户名-->
+                <tr>
+                    <td class="td_left">用户名</td>
+                    <td class="td_right"><input type="text" id="username" name="username"
+                                                placeholder="请输入6~8为英文字符"><span
+                            id="su" class="error"></span></td>
+                </tr>
+                <!-- 密码-->
+                <tr>
+                    <td class="td_left">密码</td>
+                    <td class="td_right"><input type="password" id="password" name="password"
+                                                placeholder="请输6~8为数字"><span
+                            id="pu" class="error"></span></td>
+                </tr>
+                <!-- 邮箱-->
+                <tr>
+                    <td class="td_left">Email</td>
+                    <td class="td_right"><input type="email" name="email" placeholder="请输入Email"></td>
+                </tr>
+                <!-- 姓名-->
+                <tr>
+                    <td class="td_left">姓名</td>
+                    <td class="td_right"><input type="text" id="name" name="name" placeholder="请输入2~4个中文字符"><span
+                            id="px"></span></td>
+                </tr>
+                <!-- 手机号-->
+                <tr>
+                    <td class="td_left">手机号</td>
+                    <td class="td_right"><input id="phone" type="text" name="phone" placeholder="请输入11位手机号"><span
+                            id="pp"></span></td>
+                </tr>
+                <!-- 性别-->
+                <tr>
+                    <td class="td_left">性别</td>
+                    <td class="td_right">
+                        <input id="in" type="radio" name="sex" value="1" checked>男
+                        <input id="in2" type="radio" name="sex" value="2">女
+                    </td>
+                </tr>
+                <!-- 出生日期-->
+                <tr>
+                    <td class="td_left">出生日期</td>
+                    <td class="td_right"><input type="date" name="birth"></td>
+                </tr>
+                <!-- 验证码-->
+                <tr>
+                    <td class="td_left">验证码</td>
+                    <td class="td_right"><input type="text" id="yan" name="code" placeholder="请输入验证码">
+                        <img src="../img/verify_code.jpg" width="100px" style=" vertical-align: middle;">
+                        <span id="pc"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td class="td_right">
+                        <input type="submit" value="注册" style="background-color: yellow;">
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+
+
+    <div class="right">
+        <div>
+            <span>已有账号?<a href="#">立即登录</a></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

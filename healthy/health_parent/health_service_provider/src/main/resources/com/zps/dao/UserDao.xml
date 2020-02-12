@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zps.dao.UserDao">
+
+
+    <select id="login3" parameterType="java.lang.Integer" resultType="com.zps.pojo.Permission">
+        select * from t_permission where id in (select permission_id from t_role_permission where role_id =#{id})
+    </select>
+
+    <resultMap id="baseRoleType" type="com.zps.pojo.Role">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="keyword" property="keyword"/>
+        <result column="description" property="description"/>
+    </resultMap>
+    <resultMap id="roleType" type="com.zps.pojo.Role" extends="baseRoleType">
+        <collection property="permissions"
+                    ofType="com.zps.pojo.Permission"
+                    column="id"
+                    select="com.zps.dao.UserDao.login3"/>
+    </resultMap>
+
+
+    <select id="login2" parameterType="java.lang.Integer" resultMap="roleType">
+select * from t_role where id in (select role_id from t_user_role where  user_id =#{id})
+    </select>
+
+
+    <resultMap id="baseUserType" type="com.zps.pojo.User">
+        <id column="id" property="id"/>
+        <result column="birthday" property="birthday"/>
+        <result column="gender" property="gender"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="remark" property="remark"/>
+        <result column="station" property="station"/>
+        <result column="telephone" property="telephone"/>
+    </resultMap>
+
+    <resultMap id="userType" type="com.zps.pojo.User" extends="baseUserType">
+        <collection property="roles"
+                    ofType="com.zps.pojo.Role"
+                    select="com.zps.dao.UserDao.login2"
+                    column="id"/>
+    </resultMap>
+
+    <select id="login" parameterType="java.lang.String" resultMap="userType">
+         select * from t_user where username = #{username}
+    </select>
+
+
+    <select id="findMenu" parameterType="java.lang.String" resultType="com.zps.pojo.Menu">
+        select * from t_menu where id in (select menu_id from t_role_menu where role_id in (select id from t_role where id in (select ur.role_id from t_user_role ur where ur.user_id = (select id from t_user where username= #{username}))))
+    </select>
+
+</mapper>

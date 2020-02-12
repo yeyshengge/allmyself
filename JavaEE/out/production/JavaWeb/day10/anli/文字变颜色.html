@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="test">我不变颜色</h1>
+<button style="width: 100px; height: 50px" id="button">点我使上面变颜色</button>
+
+<script>
+    var test = document.getElementById("test");
+    var button = document.getElementById("button");
+    button.onclick = fun;
+    var i = 0;
+
+    function fun() {
+        i++;
+        if (i % 7 == 0) {
+            test.style.color = "red";
+        } else if (i % 7 == 1) {
+            test.style.color = "blue";
+        } else if (i % 7 == 2) {
+            test.style.color = "yellow";
+        } else if (i % 7 == 3) {
+            test.style.color = "green";
+        } else if (i % 7 == 4) {
+            test.style.color = "black";
+        } else if (i % 7 == 5) {
+            test.style.color = "white";
+        } else {
+            test.style.color = "pink";
+        }
+    }
+
+
+</script>
+</body>
+</html>

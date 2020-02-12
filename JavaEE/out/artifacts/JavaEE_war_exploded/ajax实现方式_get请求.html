@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax实现方式_get请求</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+
+<script>
+
+    function fun() {
+        $.get("AjaxServlet", {username: "ajax"}, function (data) {
+            alert(data);
+        }, "text");
+    }
+
+</script>
+<input type="button" value="点我提交异步请求" onclick="fun()">
+</body>
+</html>

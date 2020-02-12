@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--目标对象-->
+    <bean id="targetImpl" class="com.zps.aop.targetImpl"></bean>
+    <!--切面对象-->
+    <bean id="MyAspect" class="com.zps.aop.MyAspect"></bean>
+
+    <aop:config>
+        <aop:aspect ref="MyAspect">
+            <!--<aop:before method="before" pointcut="execution(* com.zps.aop.*.*(..))"></aop:before>
+            <aop:after-returning method="afterRunning" pointcut="execution(* com.zps.aop.*.*(..))"></aop:after-returning>
+-->
+            <aop:pointcut id="cut" expression="execution(* com.zps.aop.*.*(..))"/>
+            <aop:around method="around" pointcut-ref="cut"></aop:around>
+            <aop:after-throwing method="error" pointcut-ref="cut"></aop:after-throwing>
+            <aop:after method="last" pointcut-ref="cut"></aop:after>
+
+        </aop:aspect>
+    </aop:config>
+
+</beans>

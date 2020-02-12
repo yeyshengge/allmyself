@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zps.dao.SetMealDao">
+    <select id="findCheckGroup" resultType="com.zps.pojo.CheckGroup">
+        select  * from t_checkgroup
+    </select>
+
+    <select id="findAll" resultType="com.zps.pojo.Setmeal" parameterType="string">
+        select * from t_setmeal
+        <if test="value !=null and value.length>0">
+            where name like "%${value}%" or code = #{value}
+        </if>
+    </select>
+
+    <insert id="add" parameterType="com.zps.pojo.Setmeal" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into t_setmeal values (#{id},#{name},#{code},#{helpCode},#{sex},#{age},#{price},#{remark},#{attention},#{img})
+    </insert>
+
+    <insert id="addSetMealAndGroup">
+        insert into t_setmeal_checkgroup values <foreach collection="ids" item="checkgroup_id" separator="," >(#{setmeal_id},#{checkgroup_id,jdbcType=INTEGER})</foreach>
+    </insert>
+
+
+    <select id="findSetMealAll" resultType="com.zps.pojo.Setmeal">
+        select * from t_setmeal
+    </select>
+
+
+
+
+
+    <select id="findById3" parameterType="java.lang.Integer" resultType="com.zps.pojo.CheckItem">
+SELECT * from t_checkitem where id in (SELECT checkitem_id from t_checkgroup_checkitem where checkgroup_id = #{id})
+    </select>
+
+
+    <resultMap id="basecheckgroup" type="com.zps.pojo.CheckGroup">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="helpCode" column="helpCode"/>
+        <result property="sex" column="sex"/>
+        <result property="remark" column="remark"/>
+        <result property="attention" column="attention"/>
+    </resultMap>
+
+    <resultMap id="checkgroupmap" type="com.zps.pojo.CheckGroup" extends="basecheckgroup">
+        <collection property="checkItems"
+                    ofType="com.zps.pojo.CheckItem"
+                    column="id"
+                    select="com.zps.dao.SetMealDao.findById3"/>
+    </resultMap>
+
+    <select id="findById2" parameterType="java.lang.Integer" resultMap="checkgroupmap">
+        select * from t_checkgroup where id in (select checkgroup_id from t_setmeal_checkgroup where setmeal_id=#{id})
+    </select>
+
+    <resultMap id="baseSetMeal" type="com.zps.pojo.Setmeal" >
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="helpCode" column="helpCode"/>
+        <result property="sex" column="sex"/>
+        <result property="age" column="age"/>
+        <result property="price" column="price"/>
+        <result property="remark" column="remark"/>
+        <result property="attention" column="attention"/>
+        <result property="img" column="img"/>
+    </resultMap>
+    <resultMap id="setmealmap" type="com.zps.pojo.Setmeal" extends="baseSetMeal">
+        <collection property="checkGroups"
+                    ofType="com.zps.pojo.CheckGroup"
+                    column="id"
+                    select="com.zps.dao.SetMealDao.findById2"/>
+    </resultMap>
+
+    <select id="findById" parameterType="java.lang.Integer" resultMap="setmealmap">
+        select * from t_setmeal where id = #{id}
+    </select>
+
+</mapper>

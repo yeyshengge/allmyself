@@ -1,0 +1,12 @@
+
+#yml配置文件格式
+#person:
+#  username: zhangsan
+#  age: 18
+#  dog:
+#    name: hashiqi
+#    age: 2
+#  list:
+#    - 测试1
+#    - 测试2
+#  map: {k1: v1,k2: v2}

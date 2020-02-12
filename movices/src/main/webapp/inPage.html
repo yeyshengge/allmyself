@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>笙笙影视</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/getParameter.js"></script>
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var xz = document.getElementById("xz");
+            xz.onmouseover = function () {
+                xz.style.backgroundColor = "#C5C1AA";
+            };
+            xz.onmouseout = function () {
+                xz.style.backgroundColor = "rgb(248, 248, 248)";
+            }
+        }
+        $(function () {
+            var str = '链接都给你了,怎么下载自行百度,迅雷都不会玩,搞什么...';
+            var id = location.search.split("=")[1];
+            $.get("index/into", {id: id}, function (pb) {
+
+                var cons = '<div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12" style="font-size: 18px">\n' +
+                    '           ' + pb.name + '\n' +
+                    '        </div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" ></div>\n' +
+                    '        <div class="col-md-8 col-xs-12"><img style="width: 100%;"\n' +
+                    '                                             src="' + pb.pigImg + '">\n' +
+                    '        </div>\n' +
+                    '        <div class="col-md-2 col-xs-12" ></div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row"></div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12" style="color:#CC0000;">电影名称：' + pb.name + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row"></div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">英文名称：' + pb.tname + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row"></div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">佚　　名：' + pb.ename + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">年　　份：' + pb.year + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row"></div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">产　　地：' + pb.country + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row"></div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">种　　类：' + pb.kind + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row"></div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">语　　言：' + pb.language + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row"></div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">字　　幕：' + pb.word + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row"></div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">其他详情：</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row"></div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">　　　　　' + pb.showTime + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">　　　　　' + pb.dbSecore + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">　　　　　' + pb.longTime + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">　　　　　' + pb.actor + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">　　　　　' + pb.star + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" style="margin-top: 20px"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">　　　　　' + pb.introduction + '</div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row"></div>\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-md-2 col-xs-12" ></div>\n' +
+                    '        <div class="col-md-8 col-xs-12"><img style="width: 100%;"\n' +
+                    '                                             src="' + pb.smallImg + '">\n' +
+                    '        </div>\n' +
+                    '        <div class="col-md-2 col-xs-12" ></div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row" style="margin: 20px"></div>\n' +
+                    '    <div class="row" >\n' +
+                    '        <div class="col-md-2 col-xs-12"></div>\n' +
+                    '        <div class="col-md-8 col-xs-12">下载地址： <a href="javascript:alert(\'复制即可下载：' + pb.downloadSrc + '\')">点我下载</a><a style="margin-left: 50px;color: #CC0000" href="javascript:alert(\'' + str + '\');">不会下载?</a></div>\n' +
+                    '    </div>\n' +
+                    '    <div class="row" style="margin: 20px"></div>\n' +
+                    '    <div class="col-md-12 col-xs-12"><hr></div>';
+
+                $("#content").html(cons);
+            })
+        })
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- 页面收缩时汉堡的代码 -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--此处放logo-->
+            <a class="navbar-brand" href="#"><img height="100px" src="img/logo.png" style="margin-top: -40px"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">首页 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#" id="xz" onclick="alert('本网站资源全部来源互联网，仅作为学习练习，如有建议，请留言，如有侵权，请联系我')">下载须知</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">更多<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"></a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#" onclick="alert('请联系管理员QQ:2116160647')">加入我们</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#" onclick="alert('本网站全部免费,未收一分钱，不用于商业用途，仅供学习')">给点小费</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="login.html">登录</a></li>
+                <li><a href="regist.html">注册</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container" style="width: 80%" id="content">
+
+
+</div>
+<footer>
+    <center><a href="http://www.beian.miit.gov.cn/">湘ICP备19021916号</a></center>
+</footer>
+<div class="row" style="margin-top: 10px"></div>
+</body>
+</html>

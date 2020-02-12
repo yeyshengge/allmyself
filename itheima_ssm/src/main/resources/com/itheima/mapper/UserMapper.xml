@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.UserMapper">
+    <select id="findKind" resultType="keshi">
+        select * from Keshi
+    </select>
+
+    <insert id="save" parameterType="user">
+        insert into user values (#{id},#{name},#{gender},#{did},#{content},#{age})
+    </insert>
+
+
+    <resultMap id="base" type="user">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="gender" property="gender"/>
+        <result column="age" property="age"/>
+        <result column="content" property="content"/>
+        <result column="kname" property="did"/>
+    </resultMap>
+    <select id="findAll" parameterType="string" resultMap="base">
+        SELECT *,k.name kname from user u,keshi k where u.did = k.id
+        <if test="value !=null and value.length>0">and u.name like '%${value}%'</if>
+    </select>
+</mapper>

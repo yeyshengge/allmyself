@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设置属性</title>
+</head>
+<body>
+<a>点我</a>
+<input type="button" value="加属性" id="btn_add">
+<input type="button" value="移除属性" id="btn_remove">
+<script>
+    var btn_add = document.getElementById("btn_add");
+    var a = document.getElementsByTagName("a")[0];
+    btn_add.onclick = function () {
+        //a.setAttribute("href", "www.baidu.com");
+        a.style.color = "yellow";
+    }
+        var btn_remove = document.getElementById("btn_remove");
+
+        btn_remove.onclick = function () {
+            a.removeAttribute("href");
+        }
+
+</script>
+
+
+</body>
+</html>

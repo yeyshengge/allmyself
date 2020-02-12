@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式</title>
+</head>
+<body>
+<script>
+    //两种创建方法
+
+    var reg = new RegExp("^\\w{5,6}$");
+    var str = "aaaa@是";
+    //alert(reg.test(str));
+
+
+    var reg2 = /^\w{3,6}$/;
+    var reg3 = /^@{2}$/;
+    var str2 = "aa@@aa";
+    alert(reg3.test(str2));
+</script>
+
+
+</body>
+</html>

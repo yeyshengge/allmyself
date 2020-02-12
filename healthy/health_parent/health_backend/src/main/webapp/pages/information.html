@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>传智健康</title>
+    <meta name="description" content="传智健康">
+    <meta name="keywords" content="传智健康">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="../plugins/elementui/index.css">
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- 引入组件库 -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script src="../js/vue.js"></script>
+    <script src="../plugins/elementui/index.js"></script>
+    <script src="../js/axios-0.18.0.js"></script>
+    <style>
+
+        .el-table--border, .el-table--group {
+            border: none;
+        }
+
+        .datatable {
+            position: relative;
+            box-sizing: border-box;
+            -webkit-box-flex: 1;
+            width: 100%;
+            max-width: 100%;
+            font-size: 14px;
+            color: rgb(96, 98, 102);
+            overflow: hidden;
+            flex: 1 1 0%;
+        }
+
+        .datatable td, .datatable th {
+            padding: 12px 0;
+            min-width: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+            position: relative;
+            text-align: left;
+        }
+    </style>
+</head>
+<body class="hold-transition">
+<div id="app">
+    <div class="content-header">
+        <h1>咨询管理<small>会员咨询</small></h1>
+        <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>健康评估</el-breadcrumb-item>
+            <el-breadcrumb-item>咨询管理</el-breadcrumb-item>
+        </el-breadcrumb>
+    </div>
+    <div class="app-container">
+        <div class="box">
+
+            <el-select v-model="value" placeholder="请选择" @change="change($event)" @click.native="clear()">
+                <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                </el-option>
+            </el-select>
+            <el-table
+                    :data="tableData"
+                    style="width: 100%">
+                <el-table-column
+                        prop="date"
+                        label="日期"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="receive"
+                        label="收信息">
+                </el-table-column>
+                <el-table-column
+                        el-slider
+                        prop="send"
+                        label="发信息">
+                </el-table-column>
+            </el-table>
+
+
+            <el-form ref="form" :model="form" label-width="80px">
+                <el-form-item label="输入信息">
+                    <el-input type="textarea" v-model="form.desc"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">发送</el-button>
+                </el-form-item>
+            </el-form>
+
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    var vue = new Vue({
+        el: '#app',
+        data() {
+            return {
+                tableData: [],
+                /*
+                {
+                    date: '2016-05-02',
+                    receive: '你好',
+                    send: ''
+                }, {
+                    date: '2016-05-04',
+                    receive: ' ',
+                    send: '你好'
+                }, {
+                    date: '2016-05-01',
+                    receive: '我很好',
+                    send: ' '
+                }, {
+                    date: '2016-05-03',
+                    receive: ' ',
+                    send: '那真好'
+                }
+                 */
+                options: [{
+                    value: '18473825761',
+                    label: '18473825761'
+                }, {
+                    value: '15576379525',
+                    label: '15576379525'
+                }, {
+                    value: '12345678910',
+                    label: '12345678910'
+                }, {
+                    value: '12345678911',
+                    label: '12345678911'
+                }, {
+                    value: '11111111111',
+                    label: '11111111111'
+                }],
+                value: '',
+                textarea: '',
+                name: '',
+                form: {
+                    desc: '',
+                }
+            }
+        },
+
+        created() {
+
+        }
+        ,
+        methods: {
+            change(a) {
+                _this= this;
+
+               // clearInterval(jobId);
+
+             jobId = setInterval(function () {
+                    axios.get("/message/hreceive.do?name=" + a).then((resp) => {
+                        _this.tableData = resp.data.data;
+                    })
+                }, 3000);
+            },
+            onSubmit() {
+                var params = {
+                    message: this.form.desc,
+                    receive: this.value
+                };
+                axios.post("/message/hsend.do", params).then((resp) => {
+                    if (resp.data.flag) {
+                        this.$message({
+                            type: 'success',
+                            message: resp.data.message
+                        });
+                        axios.get("/message/hreceive.do?name=" + this.value).then((resp) => {
+                            this.tableData = resp.data.data;
+                        });
+                        this.form.desc="";
+                    } else {
+                        this.$message.error(resp.data.message);
+                    }
+                })
+            },
+            clear(){
+             //清除上次定时任务
+                 clearInterval(jobId);
+            }
+        },
+    })
+</script>
+</html>

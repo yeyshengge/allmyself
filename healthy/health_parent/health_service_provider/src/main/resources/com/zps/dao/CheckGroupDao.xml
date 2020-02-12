@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zps.dao.CheckGroupDao">
+    <select id="findCheckItemAll" resultType="com.zps.pojo.CheckItem">
+        select * from t_checkitem
+    </select>
+
+    <insert id="addGroup" parameterType="com.zps.pojo.CheckGroup">
+        <!--将插入的数据列的id返回，封装在参数类型相对应的位置-->
+        <selectKey order="AFTER" keyProperty="id" resultType="java.lang.Integer">
+            <!--选择最后一列插入的id-->
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_checkgroup (code,name,helpCode,sex,remark,attention) values
+        (#{code},#{name},#{helpCode},#{sex},#{remark},#{attention})
+    </insert>
+
+    <insert id="addGroupItem" parameterType="map">
+        insert into t_checkgroup_checkitem values (#{checkgroup_id},#{checkitem_id})
+    </insert>
+
+    <select id="findPage" parameterType="java.lang.String" resultType="com.zps.pojo.CheckGroup">
+        select * from t_checkgroup
+        <if test="value != null and value.length >0">
+            where code = #{value} or name = #{value} or helpCode = #{value}
+        </if>
+    </select>
+
+    <select id="findCheckItemId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select checkitem_id from  t_checkgroup_checkitem where checkgroup_id = #{id}
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from t_checkgroup_checkitem where checkgroup_id=#{id}
+    </delete>
+
+    <update id="edit" parameterType="com.zps.pojo.CheckGroup">
+        update t_checkgroup
+        <set>
+            <if test="code!=null">
+                code = #{code},
+            </if>
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="helpCode!=null">
+                helpCode = #{helpCode},
+            </if>
+            <if test="sex!=null">
+                sex = #{sex},
+            </if>
+            <if test="attention!=null">
+                attention = #{attention},
+            </if>
+            <if test="remark!=null">
+                remark = #{remark},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteGroupById" parameterType="java.lang.Integer">
+        delete from t_checkgroup where id = #{id}
+    </delete>
+
+
+    <resultMap id="baseCheckGroup" type="com.zps.pojo.CheckGroup">
+        <id property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="helpCode" column="helpCode"/>
+        <result property="sex" column="sex"/>
+        <result property="remark" column="remark"/>
+        <result property="attention" column="attention"/>
+    </resultMap>
+
+    <resultMap id="findBySetMealId" type="com.zps.pojo.CheckGroup" extends="baseCheckGroup">
+        <collection property="checkItems"
+                    ofType="com.zps.pojo.CheckItem"
+                    select="com.zps.dao.CheckItemDao.findById"
+                    column="id"
+        />
+    </resultMap>
+
+
+    <select id="findById" parameterType="int" resultMap="findBySetMealId">
+      select * from t_checkgroup where id in (
+select checkgroup_id from t_setmeal_checkgroup where setmeal_id = #{setmeal_id} )
+    </select>
+
+
+</mapper>

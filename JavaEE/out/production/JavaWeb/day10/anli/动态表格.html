@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态表格</title>
+    <style>
+        td {
+            width: 100px;
+            text-align: center;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<form>
+    <div align="center">
+        <input id="id" name="idcard" placeholder="请输入id">
+        <input id="username" name="username" placeholder="请输入用户名">
+        <input id="sex" name="sex" placeholder="请输入性别">
+        <input type="button" id="btn" name="sex" value="提交">
+
+        <table style="border: 1px solid black;width: 500px" id="table">
+            <caption>学生信息表</caption>
+            <tr>
+                <td>编号</td>
+                <td>姓名</td>
+                <td>性别</td>
+                <td>操作</td>
+            </tr>
+
+        </table>
+
+
+    </div>
+</form>
+<script>
+    var table = document.getElementById("table");
+    var btn = document.getElementById("btn");
+    btn.onclick = function () {
+        var id = document.getElementById("id").value;
+        var t = /^\d{1,2}$/;
+        var b = t.test(id);
+        if (!b) {
+            alert("id输入有误:请输入两位数的id");
+        }
+        var username = document.getElementById("username").value;
+        var u = /^\w{6,8}$/;
+        var b1 = u.test(username);
+        if (!b1) {
+            alert("用户名输入有误:请输入6~8位英文字符");
+        }
+        var sex = document.getElementById("sex").value;
+        var s = /男|女/;
+        var b2 = s.test(sex);
+        if (!b2) {
+            alert("性别输入有误:请输入正确性别");
+        }
+        // alert(id+username+sex);
+        var r = document.createElement("tr");
+        r.setAttribute("id", r);
+
+        var td1 = document.createElement("td");
+        var text = document.createTextNode(id);
+        td1.appendChild(text);
+        r.appendChild(td1);
+
+        var td2 = document.createElement("td");
+        var text2 = document.createTextNode(username);
+        td2.appendChild(text2);
+        r.appendChild(td2);
+
+
+        var td3 = document.createElement("td");
+        var text3 = document.createTextNode(sex);
+        td3.appendChild(text3);
+        r.appendChild(td3);
+
+
+        var td4 = document.createElement("td");
+        var a = document.createElement("a");
+        a.setAttribute("href", "javascript:void(0)");
+        a.setAttribute("onclick", "fun(this)");
+        var text4 = document.createTextNode("删除");
+        a.appendChild(text4);
+        td4.appendChild(a);
+        r.appendChild(td4);
+
+        table.appendChild(r);
+
+    }
+
+    function fun(obj) {
+        var table = obj.parentNode.parentNode.parentNode;
+        var tr = obj.parentNode.parentNode;
+        table.removeChild(tr);
+    }
+
+</script>
+</body>
+</html>

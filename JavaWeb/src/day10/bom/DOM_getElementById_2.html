@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<img id="light_off" src="../img/off.gif">
+<h1 id="title">电灯泡是熄灭的耶</h1>
+<script>
+    var light_off = document.getElementById("light_off");
+    alert("我要换图片");
+    light_off.width = "200";
+    light_off.src = "../img/on.gif";
+    //light_off.width = "100px";
+
+    var title = document.getElementById("title");
+    title.innerText = "电灯泡亮了啦";
+
+</script>
+</body>
+</html>

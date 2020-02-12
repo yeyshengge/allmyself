@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--普通字符串-->
+<p th:text="${name}"></p>
+</br>
+<!--for表单提交-->
+<form th:action="@{/thymeleaf/test01}">
+    <input th:type="text" th:name="name">
+    <input th:type="submit">
+</form>
+</br>
+<!--遍历List-->
+<table>
+    <tr>
+        <td>编号</td>
+        <td>id</td>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>地址</td>
+    </tr>
+    <tr th:each="user,userList:${userList}">
+        <td th:text="${userList.index}"></td>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.address}"></td>
+    </tr>
+</table>
+</br>
+<!--遍历map-->
+<div th:each="map,dataMap:${dataMap}">
+    map:
+    <div th:text="${map}"></div>
+    key:
+    <div th:text="${dataMap.current.key}"></div>
+    value:
+    <div th:text="${dataMap.current.value}"></div>
+</div>
+
+<br>
+<!--遍历数组-->
+<div th:each="name,arr:${arr}">
+    <span th:text="${arr.count}"></span>
+    <span th:text="${name}"></span>
+</div>
+
+<!--日期显示-->
+
+<div>
+    <span th:text="${#dates.format(now,'yyyy-MM-dd hh:mm:ss')}"></span>
+</div>
+
+<!--if条件-->
+<div>
+    <span th:if="${(age>18)}">成年了</span>
+</div>
+<!--导入模块-->
+<div th:include="footer::A">
+
+</div>
+</body>
+</html>

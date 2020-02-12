@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function</title>
+</head>
+<body>
+<script>
+    //定义方法一：
+    //参数跟方法都要用双引号引起来,且Function首字母大写
+    /* var fun = new Function("a", "b", "alert(a)");
+     fun(1,2);*/
+
+    //方法二
+    function fun2(a, b) {
+        alert(a);
+    }
+
+    //fun2(2);
+
+
+    //方法三
+
+    var fun3 = function (a, b) {
+        alert(a);
+    }
+    //fun3(3);
+
+
+    fun3 = function (a, b) {
+        alert(b);
+    }
+    //fun3(3);
+
+
+    function fun4(a, b) {
+        alert(arguments[0]);
+        alert(arguments[1]);
+    }
+
+    //fun4(1, 2);
+
+
+    function fun5() {
+        var sum = 0;
+        for (var i = 0; i < arguments.length; i++) {
+            sum += arguments[i];
+        }
+        return sum;
+    }
+    var number = fun5(1,2,3);
+    alert(number);
+
+
+</script>
+</body>
+</html>

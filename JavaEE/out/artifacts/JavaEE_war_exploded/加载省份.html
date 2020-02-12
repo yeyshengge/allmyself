@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加载省份</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            $.get("ProvinceServlet", {}, function (data) {
+                alert(data);
+                for (var i = 0; i < data.length; i++) {
+                    $("<option>" + data[i].name + "</option>").insertAfter($("#checked"));
+                }
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+<div align="center">
+    <form method="get" action="#">
+        <select id="select" name="province">
+            <option  id="checked" selected>--- 请选择省份 ---</option>
+
+        </select>
+        <input type="submit" value="提交">
+    </form>
+</div>
+</body>
+</html>

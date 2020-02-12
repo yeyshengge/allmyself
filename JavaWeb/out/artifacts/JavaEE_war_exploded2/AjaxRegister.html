@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax注册</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            $("#username").blur(function () {
+                var username = $(this).val();
+                //{"userExsit":true,"msg":"用户名已存在"}
+                $.get("RegisterServlet", {username: username}, function (data) {
+                    var span = $("#sn");
+                    if (data.userExist) {
+                        //如果重复
+                        span.css("color", "red");
+                        span.html(data.msg);
+                    } else {
+                        //如果不重复
+                        span.css("color", "green");
+                        span.html(data.msg);
+                    }
+                }, "json");
+            });
+        });
+
+    </script>
+</head>
+<body>
+<form>
+    <table align="center" width="500px" cellpadding="10px">
+        <tr>
+            <th colspan="2">请注册</th>
+        </tr>
+        <tr>
+            <td>用户名</td>
+            <td><input type="text" name="username" id="username" width="100px"><span id="sn"></span></td>
+        </tr>
+        <tr>
+            <td>密码</td>
+            <td><input type="password" name="password" id="password" width="100px"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="提交" style="width: 100%"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

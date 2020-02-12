@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script>
+        $(function () {
+            $("#province").change(function () {
+                $("#part").html("");
+                var value = $("#province > option:checked").val();
+                    $.get("ProvinceServlet", {value: value}, function (data) {
+                        var citys = '';
+                        for (var i = 0; i < data.length; i++) {
+                            citys += ' <option>' + data[i].name + '</option>';
+                        }
+                        $("#city").html(citys);
+                    }, "json");
+            });
+
+            $("#city").change(function () {
+                var city = $("#city > option:checked").val();
+                    $.get("CityServlet", {city: city}, function (data) {
+                        var parts = '';
+                        for (var i = 0; i < data.length; i++) {
+                            parts += ' <option>' + data[i].name + '</option>';
+                        }
+                        $("#part").html(parts);
+                    }, "json");
+            });
+        });
+    </script>
+</head>
+<body>
+请选择省份<select name="province" id="province">
+    <option id="1">湖南</option>
+    <option id="2">湖北</option>
+    <option id="3">广东</option>
+</select>
+<br>
+请选择城市<select name="city" id="city">
+</select>
+<br>
+请选择区域<select name="part" id="part">
+</select>
+
+
+</body>
+</html>

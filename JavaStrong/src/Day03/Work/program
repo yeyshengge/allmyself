@@ -1,0 +1,65 @@
+第一题：练习今日的代码
+
+第二题： 概念
+1、内部类的访问特点是什么？
+* 内部类可以直接访问外部类的成员，包括私有
+  * 外部类要访问内部类的成员，必须创建对象
+
+2、什么是匿名内部类，它的本质是什么？
+匿名类是指没有类名的内部类，必须在创建时使用 new 语句来声明类。
+本质：是一个继承了该类或者实现了该接口的子类匿名对象
+
+3、匿名内部类的前提条件，格式分别是什么？
+  * 存在一个类或者接口，这里的类可以是具体类也可以是抽象类
+	格式：new 类名 ( ) {  重写方法 }    new  接口名 ( ) { 重写方法 }
+
+第三题：根据需求，完成如下代码（按照标准格式写），并在测试类中进行测试
+	需求一：
+		已知接口Play中有一个方法playGame()，再测试类中如何调用该方法？(用匿名内部类实现)
+
+第四题：分析以下需求，并用代码实现
+	interface Inter {
+		void show();
+	}
+	class Outer {
+		//补齐代码
+
+	}
+
+	class A implements Inter{
+		public void show(){
+			sout("HelloWorld");
+		}
+	}
+	public class OuterDemo {
+		public static void main(String[] args) {
+			  Outer.method().show();
+		  }
+	}
+	要求在控制台输出”HelloWorld”
+
+
+
+第五题：分析以下需求，并用代码实现
+
+	要求:在测试类Test中创建A的对象a并调用成员方法methodA(),要求用两种方式实现
+
+	public class Test {
+		public static void main(String[] args) {
+
+		}
+	}
+	//定义接口
+	interface InterA {
+		void showA();
+	}
+	class A {
+		public void methodA(InterA a) {
+			a.showA();
+		}
+	}
+
+第六题:
+	1,键盘录入一个整数作为数组的长度,然后通过随机数为该数组赋值
+	2,然后对数组进行 升序排列
+	3,最后将数组的元素 拼接成 [1,3,4...] 这种形式

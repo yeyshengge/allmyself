@@ -1,0 +1,140 @@
+1,启动数据库
+        net start mysql
+2,登陆数据库
+        MYSQL -uroot -p16436130
+3,显示所有数据库
+        show databases
+4,使用指定的数据库
+        use (数据库名)
+5,显示该数据库的所有表
+        show tables
+6,查询该表下的所有内容
+        select * from (表名)
+7、 创建表
+　　输入命令：mysql> create table mobile
+　　　　　　　　　　  (id int not null auto_increment, primary key(id), //设置主键和自增列
+　　　　　　　　　　　brand nvarchar(20),
+　　　　　　　　　　　size float,
+　　　　　　　　　　　price int) ;
+8、向新建的mobile表插入数据，插入数据有三种方式，分别如下：
+　　方式一：单条插入，
+　　　　输入命令：mysql> insert into mobile(brand,size,price) values ('小米4'， 5.0， 1999)；
+　　　　                 　　或   insert into mobile set brand='iphone6 plus', size=6.0, price=6200;
+　　方式二：多条插入，
+　　　　输入命令：mysql> insert into mobile(brand,size,price)
+　　　　　　　　　　　　   values
+　　　　　　　　　　　　   ('iphone6',4.7,5200), ('华为meta7',6.0,3200), ('华为6plus', 5.5, 1999);
+
+
+9,如果想在一个已经建好的表中添加一列，可以用以下代码：
+        alter table 表名 add 列名 varchar(20) not null;
+
+10,在指定字段(列)后添加一列
+        alter table 表名 add  列名 varchar(20) not null after 指定列;
+
+11,在表的最前面添加列
+        alter table 表名 add  列名 varchar(20) not null first;
+
+12,修改表中某某一列的名称
+
+            alter table 表名 change  旧字段 新字段 新字段的类型;
+
+13,在表中删除某一列
+        alter table 表名 drop 列名 ;
+
+14 修改表名
+			alter table 表名 rename to 新的表名;
+15 修改表的字符集
+			alter table 表名 character set 字符集名称;
+16. 添加一列
+			alter table 表名 add 列名 数据类型;
+17. 修改列名称 类型
+			alter table 表名 change 列名 新列别 新数据类型;
+			alter table 表名 modify 列名 新数据类型;
+18. 删除列
+			alter table 表名 drop 列名;　
+19. D(Delete):删除
+             drop table 表名;
+             drop table  if exists 表名 ;
+20. 数据操作 insert/delete/update
+	1. 添加数据：
+		* 语法：
+			* insert into 表名(列名1,列名2,...列名n) values(值1,值2,...值n),(值1,值2,...值n)...;
+	2. 删除数据：
+		* 语法：
+			* delete from 表名 [where 条件]   -- 删除表数据，自增列不重新开始
+			* TRUNCATE TABLE 表名;   -- 摧毁表，主键自增重新开始
+	3. 修改数据：
+		* 语法：
+			* update 表名 set 列名1 = 值1, 列名2 = 值2,... [where 条件];
+
+21. 查询 select
+	去除重复： distinct
+	1. 基础查询
+		select 字段名 from 表名;
+	2. 条件查询
+		select 字段名 from 表名 where 字段名 = 条件;
+	3. 分组查询
+		select 字段名 from 表名 where 字段名 = 条件 order by 字段名 asc 升序 / desc 降序
+	4. 聚合函数
+		sum 求和  avg  求平均数   max 求最大值  min 求最小值  count 求个数
+		select sum(字段名) from 表名
+	5. 分组查询
+		group by 字段名 having 过滤  通常结合聚合函数一同使用
+		select 分组字段名, sum(字段名) from 表名 group by 分组字段名
+	6. 分页查询   limit 0,5   limit 5,5      limit 3 查询前3条数据
+		SELECT * FROM student LIMIT 0,3; -- 第1页
+		SELECT * FROM student LIMIT 3,3; -- 第2页
+		SELECT * FROM student LIMIT 6,3; -- 第3页
+
+
+SELECT * FROM student3;
+-- 查询姓名和年龄
+SELECT NAME,age FROM student3;
+-- 查询地址,但是不包含重复的记录
+SELECT DISTINCT address FROM student3;
+-- 查询 math + english 的和
+SELECT NAME,math,english,math+IFNULL(english,0) AS SUM FROM student3;
+#练习:
+-- 给所有的数学加 5 分
+-- 如果想查询每一位学生的平均分,怎么办?
+
+-- 查询年龄大于20岁
+SELECT * FROM student WHERE age > 20;
+SELECT * FROM student WHERE age >= 20;
+
+-- 查询年龄等于20岁
+SELECT * FROM student WHERE age = 20;
+
+-- 查询年龄不等于20岁
+SELECT * FROM student WHERE age != 20;
+SELECT * FROM student WHERE age <> 20;
+
+-- 查询年龄大于等于20 小于等于30
+
+SELECT * FROM student WHERE age >= 20 &&  age <=30;
+SELECT * FROM student WHERE age >= 20 AND  age <=30;
+SELECT * FROM student WHERE age BETWEEN 20 AND 30;
+
+-- 查询年龄22岁，18岁，25岁的信息
+SELECT * FROM student WHERE age = 22 OR age = 18 OR age = 25
+SELECT * FROM student WHERE age IN (22,18,25);
+
+-- 查询英语成绩为null
+SELECT * FROM student WHERE english = NULL; -- 不对的。null值不能使用 = （!=） 判断
+
+SELECT * FROM student WHERE english IS NULL;
+
+-- 查询英语成绩不为null
+SELECT * FROM student WHERE english  IS NOT NULL;
+
+-- 查询姓马的有哪些？ like
+-- '%' 代表有很多个
+-- '_' 代表有一个
+SELECT * FROM student WHERE NAME LIKE '马%';
+-- 查询姓名第二个字是化的人
+SELECT * FROM student WHERE NAME LIKE "_化%";
+-- 查询姓名是3个字的人
+SELECT * FROM student WHERE NAME LIKE '___';
+-- 查询姓名中包含德的人
+SELECT * FROM student WHERE NAME LIKE '%德%'

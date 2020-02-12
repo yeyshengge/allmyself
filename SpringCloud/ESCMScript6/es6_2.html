@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>es6 测试</title>
+</head>
+<script type="text/javascript">
+    //函数优化
+    var fun1 = function (a, b) {
+        console.log(a + b);
+    };
+    fun1(1, 2);
+    var fun2 = (a, b) => console.log(a + b);
+    fun2(1, 2);
+
+    console.log("--------");
+
+    fun3 = (a, b) => {
+        console.log(a + b);
+        return a + b;
+    };
+    console.log(fun3(1, 2));
+    console.log("--------");
+
+    let person = {
+        name: "张三",
+        fun4: function (a) {
+            console.log(a);
+        },
+        fun5: a => {
+            console.log(a);
+        },
+        fun6(a) {
+            console.log(a);
+        }
+    };
+    person.fun4(1);
+    person.fun4(2);
+    person.fun4(3);
+
+    var student = {
+            name: "zhangsan",
+            fun5(course) {
+                console.log(this.name + "在学" + course);
+            },
+            fun6(course) {
+                console.log(`${name}在学${course}`);
+            },
+            fun7: (course) => console.log(this.name + "在学" + course),
+
+        }
+    ;
+    student.fun5("java");
+    student.fun6("c++");
+    student.fun7("js");
+
+    //对象解析跟箭头函数自动捆绑
+    var fun8 = ({name}) => console.log(name + "你好");
+    fun8(student);
+
+</script>
+<body>
+
+
+</body>
+</html>

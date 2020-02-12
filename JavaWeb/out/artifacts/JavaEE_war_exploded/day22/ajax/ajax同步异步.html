@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax同步异步</title>
+    <script>
+        function fun() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.open("GET", "/day22/AjaxServlet?username=ajax", true);
+            xmlhttp.send();
+
+
+        }
+
+
+    </script>
+
+</head>
+<body>
+
+
+<input type="button" onclick="fun()">
+<input>
+</body>
+</html>

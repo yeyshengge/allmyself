@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zps.dao.OrderMapper">
+
+
+    <resultMap id="orderMap" type="order">
+        <id column="id" property="id"/>
+        <result column="ordertime" property="ordertime"/>
+        <result column="total" property="total"/>
+        <!--方法一-->
+      <!--  <result column="uid" property="user.id"/>
+        <result column="username" property="user.username"/>
+        <result column="password" property="user.password"/>
+        <result column="birthday" property="user.birthday"/>-->
+        <!--方法二-->
+        <association property="user" javaType="user">
+            <result column="uid" property="id"/>
+            <result column="username" property="username"/>
+            <result column="password" property="password"/>
+            <result column="birthday" property="birthday"/>
+        </association>
+    </resultMap>
+
+
+    <select id="findAll" resultMap="orderMap">
+        select *,u.id uid from orders o,user u where o.id=u.id
+    </select>
+</mapper>

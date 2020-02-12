@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自动跳首页</title>
+</head>
+<body>
+<h4 align="center"><span style="color: red" id="test">5</span>秒之后，自动跳转首页...</h4>
+<script>
+    var test = document.getElementById("test");
+    var i = 5;
+
+    function fun() {
+        test.innerText = i + "";
+        i--;
+        if (i >= 0) {
+            setTimeout(fun, 1000);
+        }
+        if (i < 0) {
+            //location.href = "https://www.baidu.com";
+            location.href = "http://localhost:63342/JavaStrong/JavaWeb/day10/anli/%E6%B3%A8%E5%86%8C%E9%A1%B5%E9%9D%A2.html?_ijt=v6pkfcchsi72iul10ummc5qqjn";
+        }
+    }
+
+    fun();
+
+</script>
+</body>
+</html>

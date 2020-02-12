@@ -1,0 +1,2 @@
+className=Day15.work.subject02.DemoClass
+methodName=run

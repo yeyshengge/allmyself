@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="re">刷新</button>
+<button id="go">去百度</button>
+<input id="back" type="button" value="后退">
+<script>
+    var re = document.getElementById("re");
+    var go = document.getElementById("go");
+    var back = document.getElementById("back");
+    re.onclick = function () {
+
+        location.reload();
+    }
+    go.onclick = function () {
+        location.href = "https://www.baidu.com";
+    }
+    back.onclick = function () {
+        history.back();
+    }
+
+</script>
+</body>
+</html>

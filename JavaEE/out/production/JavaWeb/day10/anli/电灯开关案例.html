@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电灯开关</title>
+</head>
+<body>
+
+
+<!--<img id="light_off" src="../img/off.gif" onclick="alert('别点我');">-->
+<!--<img id="light_off" src="../img/off.gif" onclick="fun()">-->
+<img id="light_off" src="../img/off.gif" onclick="fun()">
+<h1 id="title">电灯泡是熄灭的耶</h1>
+<script>
+
+    var flag = false;
+    function fun() {
+        var ligth_off = document.getElementById("light_off");
+        var title = document.getElementById("title");
+        if (flag == false) {
+            ligth_off.src = "../img/on.gif";
+            title.innerText="灯亮了";
+            flag = true;
+        } else {
+            ligth_off.src = "../img/off.gif";
+            title.innerText="灯灭了";
+            flag = false;
+        }
+    }
+
+</script>
+
+</body>
+</html>

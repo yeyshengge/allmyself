@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax同步异步</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        function fun() {
+            $.ajax({
+                url: "AjaxServlet",
+                type: "post",
+                data: {"username": "jack", "age": 23},
+                success: function (data) {
+                    alert(data);
+                },
+                error: function () {
+                    alert("出错了");
+                },
+                dataType: "text"
+
+            })
+        }
+
+    </script>
+
+</head>
+<body>
+
+
+<input type="button" value="点我提交异步请求" onclick="fun();">
+<input>
+</body>
+</html>

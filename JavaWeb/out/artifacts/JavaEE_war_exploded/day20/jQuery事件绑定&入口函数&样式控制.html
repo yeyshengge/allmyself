@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery事件绑定&入口函数&样式控制</title>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<script>
+    //jQuery入口函数，跟window.onload()不同，jQuery入口函数可以多次定义，而onload()会覆盖
+    window.onload = function(){
+        alert("第一个onload")
+    };
+    //第二个会把第一个覆盖
+    window.onload = function(){
+        alert("第二个onload")
+    };
+
+
+    $(function () {
+        alert("第一个jQuery来了")
+        $("#div1").css("backgroundColor", "red");
+
+        $("#btn").click(function () {
+            alert("你点我啊");
+            $("#btn").css("backgroundColor", "yellow");
+        })
+    });
+
+    //不会覆盖
+    $(function(){
+       alert("第二个jQuery来了")
+    });
+</script>
+
+
+<div id="div1">div1...</div>
+<div id="div2">div2...</div>
+<input type="button" value="点我" id="btn">
+</body>
+</html>

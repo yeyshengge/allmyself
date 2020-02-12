@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array对象</title>
+</head>
+<body>
+
+
+<script>
+
+    /*
+    三种创建数组对象的方法
+
+     */
+    var arr = new Array(10);
+    document.write(arr + "<br>");
+
+    var arr2 = new Array(1, 2, 3, 4, 5, 6, 7);
+    document.write(arr2 + "<br>");
+
+    var arr3 = ["a", "b", "c", "d"];
+    document.write(arr3 + "<br>");
+
+    var arr4 = new Array(1, 2, 3, 4, 5, 6, 7);
+    arr4[10] = true;
+    document.write(arr4[8] + "<br>");
+    document.write(arr4.length + "<br>");
+    document.write(arr4 + "<br>");
+    document.write(arr4.join("---") + "<br>");
+
+
+
+</script>
+
+
+</body>
+</html>

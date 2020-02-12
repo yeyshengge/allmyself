@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>文字自动变色</title>
+</head>
+<body>
+<div id="test" style="width: 100%;height:500px"><h1 align="center" id="title">闪瞎你的眼</h1></div>
+
+
+<script>
+    var test = document.getElementById("test");
+    var Arraycolor = new Array("#00FF66", "#FFFF99", "#99CCFF", "#FFCCFF", "#FFCC99", "#00FFFF", "#FFFF00", "#FFCC00", "#FF00FF");
+    var n = 0;
+    var m = Arraycolor.length - 1;
+    var
+        title = document.getElementById("title");
+
+    function fun() {
+        if (n == Arraycolor.length - 1) {
+            n = 0;
+            m = Arraycolor.length - 1;
+        }
+        test.style.backgroundColor = Arraycolor[n++];
+        title.style.color = Arraycolor[m--]
+        var date = Math.random() * 1000;
+        setTimeout("fun()", date);
+    }
+
+    fun();
+
+
+</script>
+</body>
+</html>

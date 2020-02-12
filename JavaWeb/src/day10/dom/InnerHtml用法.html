@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1">
+    123
+</div>
+<script>
+    //var div = document.getElementById("div1");
+    var div = document.getElementsByTagName("div")[0];
+    var innerHTML = div.innerHTML;
+    alert(innerHTML);
+    //替换
+    div.innerHTML = "<a href='#'>点我啊</a>"
+    //追加
+    div.innerHTML += "<input type='button'>"
+    div.innerText = "dadadad";
+</script>
+
+
+</body>
+</html>

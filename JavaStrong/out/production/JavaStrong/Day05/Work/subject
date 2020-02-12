@@ -1,0 +1,32 @@
+1.分析以下需求，并用代码实现：
+	(1)生成10个1至100之间的随机整数(不能重复)，存入一个List集合(可以先不使用泛型，泛型明天讲)
+	(2)编写方法对List集合进行排序,禁用Collections.sort方法和TreeSet
+	(2)然后利用迭代器遍历集合元素并输出
+	(3)如：15 18 20 40 46 60 65 70 75 91
+
+2.分析以下需求，并用代码实现：
+	(1)定义List集合，存入多个字符串
+	(2)删除集合中字符串"def"
+	(3)然后利用迭代器遍历集合元素并输出
+
+3.分析以下需求，并用代码实现：
+	(1)定义List集合，存入多个字符串
+	(2)删除集合中包含0-9数字的字符串(只要字符串中包含0-9中的任意一个数字就需要删除此整个字符串)
+	(3)然后利用迭代器遍历集合元素并输出
+
+4.  定义一个学生类Student，包含三个属性姓名、年龄、性别，创建三个学生对象存入ArrayList集合中。
+A：遍历集合遍历输出。
+B：求出年龄最大的学生，然后将该对象的姓名变为：小猪佩奇。
+
+5、给定以下代码，请定义方法public static int listTest(Collection<String> list,String s)统计集合中指定元素出现的次数，
+如"a":2,"b": 2,"c" :1, "xxx":0。
+Collection<String> list = new ArrayList<>();
+	list.add("a");
+	list.add("a");
+	list.add("b");
+	list.add("b");
+	list.add("c");
+	System.out.println("a:"+listTest(list, "a"));
+	System.out.println("b:"+listTest(list, "b"));
+	System.out.println("c:"+listTest(list, "c"));
+	System.out.println("xxx:"+listTest(list, "xxx"));

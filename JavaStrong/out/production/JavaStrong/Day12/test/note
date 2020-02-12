@@ -1,0 +1,29 @@
+UDP连接方法：
+           UDP发送信息：
+           第一步： DatagramSocket​() 构造数据报套接字并将其绑定到本地主机上的任何可用端口。
+           第二步： 定义 byte[] 用来包含发送的信息,可以是固定的长度,也可以是键盘录入。
+           第三步： DatagramPacket​(byte[] buf, int length, InetAddress address, int port)
+                   构造一个数据包发送长度为信息,(int length为byte[]数组长度,
+                   InetAddress address =IntAddress.getByName​("接受端ip地址")
+           第四步： void send​(DatagramPacket p) 从此套接字发送数据报包。 (DatagramSocket对象来调用)
+           第五步： void close​() 关闭此数据报套接字。
+
+           UDP接收信息：
+           第一步： DatagramSocket​(int port) 构造数据报套接字并将其绑定到本地主机上的指定端口。port与发送端一致
+           第二步： 定义 byte[] 用来接收发送的信息,包裹数组
+           第三步： DatagramPacket​(byte[] buf, int length) 构造一个 DatagramPacket用于接收长度为 length数据包。
+                   (int length为byte[]数组长度)
+           第四步： void receive​(DatagramPacket p) 从此套接字接收数据报包。(DatagramSocket对象调用，把DatagramPacket对象传进来)
+           第五步： DatagramPacket对象调用getDate()方法,将要输出的信息放在这里，得到的数组是真正的数据
+           第六步： DatagramPacket对象调用getLength()方法，确定输出长度，不然会有很多不明字符出现
+           第七步：  System.out.println(new String(getDate()对象, 0, getLength()对象));
+
+
+
+
+
+
+
+
+
+

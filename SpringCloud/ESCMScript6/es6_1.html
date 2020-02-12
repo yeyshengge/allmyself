@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>es6 测试</title>
+</head>
+<script type="text/javascript">
+    /*   for (var i = 0; i < 5; i++) {
+           console.log(i);
+       }
+       console.log(i);
+
+
+       for (let j = 0; j < 5; j++) {
+           console.log(j);
+       }
+       console.log(j);
+
+       总结：var 定义的变量可以在方法外使用（成为一个成员变量）、
+            而 let 定义的变量只能在方法里面使用（作用范围内）
+     */
+    /*
+        const name = "Hello";
+        console.log(name);
+        name = "Hi"; //报错
+
+        总结： const 为constant的缩写，且修饰的变量为常量，不可再次赋值
+    */
+
+    const name = "Jack";
+    console.log(`模板字符串取得name为${name}`);
+
+    //原始的js遇到换行时必须每一行加" \ "符号，否则就要写很多 " + "
+    const content = "Hi \
+       \
+       \Jack";
+    console.log(content);
+    //模板字符串操作如下
+    const text = `a
+    b
+    c
+    d
+    `;
+    console.log(text);
+
+    function fun5(name, age) {
+        return {name: name, age: age};
+    }
+
+    console.log("ES5对象初始化 ： " + JSON.stringify(fun5("zhangsan", "18")));
+
+    function fun6(name, age) {
+        return {name,age};
+    }
+
+    console.log("ES6对象初始化 ： " + JSON.stringify(fun6("zhangsan", "18")));
+
+
+
+
+</script>
+<body>
+
+</body>
+</html>

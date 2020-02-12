@@ -1,0 +1,2 @@
+className=Day15.Teacher
+methodName=teach

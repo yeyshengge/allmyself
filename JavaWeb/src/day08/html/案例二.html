@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <!--<link rel="stylesheet" type="text/css" href="../css/AnLiTwo.css">-->
+   <style>
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+       }
+
+       body {
+           background-image: url("../img/register_bg.png");
+           background-repeat: no-repeat;
+       }
+
+       .out {
+           padding: 10px;
+           border: 8px solid rgb(238, 238, 238);
+           margin: auto;
+           width: 900px;
+           height: 600px;
+           margin-top: 20px;
+           background-color: white;
+       }
+
+       .left {
+           float: left;
+           width: 220px;
+           height: 200px;
+
+       }
+
+       .center {
+           margin-top: 50px;
+           float: left;
+           width: 380px;
+           height: 600px;
+
+       }
+
+       .right {
+           padding: 10px;
+           float: right;
+           width: 160px;
+           height: 200px;
+
+       }
+
+       .left_frist {
+           margin: 15px;
+           font-size: 25px;
+           color: yellow;
+       }
+
+       .left_second {
+           margin-left: 15px;
+           margin-top: 5px;
+           font-size: 25px;
+           color: grey;
+       }
+
+       div a {
+           color: red;
+       }
+
+       div span {
+           float: right;
+       }
+
+       .td_left {
+           width: 100px;
+           text-align: right;
+       }
+
+       .td_right {
+           width: 150px;
+           text-align: left;
+           padding-left: 20px;
+       }
+
+       tr {
+           margin-top: 20px;
+       }
+
+       table input {
+           height: 30px;
+           width: 200px;
+           border-radius: 5px;
+           padding-left: 10px;
+       }
+
+       #in {
+           height: 15px;
+           width: 15px;
+       }
+
+       #in2 {
+           height: 15px;
+           width: 15px;
+       }
+       #yan{
+           width: 90px;
+
+       }
+       td{
+           padding-top: 20px;
+       }
+   </style>
+</head>
+<body>
+<div class="out">
+    <div class="left">
+        <div class="left_frist">新用户注册</div>
+        <div class="left_second">USER REGISTER</div>
+    </div>
+
+    <div class="center">
+        <form>
+            <table >
+                <tr>
+                    <td class="td_left">用户名</td>
+                    <td class="td_right"><input type="text" name="username"placeholder="请输入用户名"></td>
+                </tr>
+                <tr>
+                    <td class="td_left">密码</td>
+                    <td class="td_right"><input type="password" name="password" placeholder="请输入密码"></td>
+                </tr>
+
+                <tr>
+                    <td class="td_left">Email</td>
+                    <td class="td_right" ><input type="email" name="email" placeholder="请输入Email"></td>
+                </tr>
+
+                <tr>
+                    <td class="td_left">姓名</td>
+                    <td class="td_right"><input type="text" name="name" placeholder="请输入您的真实姓名"></td>
+                </tr>
+
+                <tr>
+                    <td class="td_left">手机号</td>
+                    <td class="td_right"><input type="number" name="phone" placeholder="请输入手机号"></td>
+                </tr>
+
+                <tr>
+                    <td class="td_left">性别</td>
+                    <td class="td_right">
+                        <input id="in" type="radio" name="sex" value="1">男
+                        <input id="in2" type="radio" name="sex" value="2">女
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="td_left">出生日期</td>
+                    <td class="td_right"><input type="date" name="birth"></td>
+                </tr>
+
+                <tr>
+                    <td class="td_left">验证码</td>
+                    <td class="td_right"><input type="text" id="yan" name="code" placeholder="请输入验证码">
+                        <img src="../img/verify_code.jpg" width="100px" style=" vertical-align: middle;">
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="td_left" colspan="2">
+                        <input type="submit" value="注册" style="background-color: yellow">
+
+                    </td>
+
+                </tr>
+
+
+            </table>
+        </form>
+    </div>
+
+
+    <div class="right">
+        <div>
+            <span>已有账号?<a href="#">立即登录</a></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>登录</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/getParameter.js"></script>
+    <script>
+        $(function () {
+            $("#form").submit(function () {
+                if (username() && password() && code()) {
+                    var name = $("#inputSuccess2").val();
+                    var pswd = $("#inputWarning2").val();
+                    var cod = $("#inputError2").val();
+                    $.get("/user/login", {username: name, password: pswd, code: cod}, function (data) {
+                        if (data.flag) {
+                            alert("登录成功")
+                            location.href = "index.html";
+                        } else {
+                            $("#inputGroupSuccess1Status").html(data.errorMsg);
+                        }
+                    })
+                }
+                return false;
+            });
+
+
+            $("#inputSuccess2").blur(username);
+            $("#inputWarning2").blur(password);
+            $("#inputError2").blur(code);
+        });
+
+        function username() {
+            var username = $("#inputSuccess2").val();
+            var exp_name = /^\w{4,8}$/;
+            var name = exp_name.test(username);
+            if (name) {
+                //输入正确
+                $("#inputSuccess2Status").addClass("sr-only");
+                $("#u").removeClass("glyphicon-warning-sign");
+                $("#u").addClass("glyphicon-ok");
+            } else {
+                $("#u").removeClass("glyphicon-ok");
+                $("#u").addClass("glyphicon-warning-sign");
+                $("#inputSuccess2Status").removeClass("sr-only")
+            }
+            return name;
+        }
+
+
+        function password() {
+            var password = $("#inputWarning2").val();
+            var exp_pswd = /^\w{4,8}$/;
+            var name = exp_pswd.test(password);
+            if (name) {
+                //输入正确
+                $("#inputWarning2Status").addClass("sr-only");
+                $("#p").removeClass("glyphicon-warning-sign");
+                $("#p").addClass("glyphicon-ok");
+            } else {
+                $("#p").removeClass("glyphicon-ok");
+                $("#p").addClass("glyphicon-warning-sign");
+                $("#inputWarning2Status").removeClass("sr-only")
+            }
+            return name;
+        }
+
+        function code() {
+            var code = $("#inputError2").val();
+            var exp_code = /^(\d|\w){4}$/;
+            var name = exp_code.test(code);
+            if (name) {
+                //输入正确
+                $("#inputError2Status").addClass("sr-only");
+                $("#c").removeClass("glyphicon-warning-sign");
+                $("#c").addClass("glyphicon-ok");
+            } else {
+                $("#c").removeClass("glyphicon-ok");
+                $("#c").addClass("glyphicon-warning-sign");
+                $("#inputError2Status").removeClass("sr-only")
+            }
+            return name;
+        }
+
+        function check() {
+            var img = document.getElementById("img");
+            img.src = "checkCode?time=" + new Date().getTime();
+        }
+
+    </script>
+</head>
+<body>
+<center><div><h3>登录</h3></div></center>
+<form action="" method="post" id="form">
+    <div class="container" style="width: 50%" id="content">
+        <div class="row" style="margin-top: 100px"></div>
+        <div class="form-group has-success has-feedback">
+            <label class="control-label" for="inputSuccess2">用户名</label>
+            <input type="text" name="username" class="form-control" id="inputSuccess2"
+                   aria-describedby="inputSuccess2Status">
+            <span id="u" class="glyphicon  form-control-feedback" aria-hidden="true"></span>
+            <span id="inputSuccess2Status" style="color: red">请输入4-8位英文字母</span>
+        </div>
+        <div class="form-group has-warning has-feedback">
+            <label class="control-label" for="inputWarning2">密码</label>
+            <input type="text" class="form-control" name="password" id="inputWarning2"
+                   aria-describedby="inputWarning2Status">
+            <span id="p" class="glyphicon  form-control-feedback" aria-hidden="true"></span>
+            <span id="inputWarning2Status" style="color: red">请输入4-8位英文字母</span>
+        </div>
+        <div class="form-group has-error has-feedback">
+            <div><label class="control-label" for="inputError2">验证码</label></div>
+            <img src="checkCode" height="32px" alt="" id="img" style="border-radius:4px;"
+                 onclick="check()"><a onclick="check()">看不清？换一张</a>
+            <input type="text" name="code" class="form-control" id="inputError2"
+                   aria-describedby="inputError2Status">
+            <span id="c" class="glyphicon  form-control-feedback" aria-hidden="true"></span>
+            <span id="inputError2Status" style="color: red">请输入4位英文字母或数字</span>
+        </div>
+        <div class="form-group has-success has-feedback">
+            <label class="control-label" for="inputGroupSuccess1"></label>
+            <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input type="submit" class="form-control" id="inputGroupSuccess1"
+                       aria-describedby="inputGroupSuccess1Status" value="登录">
+                <span class="input-group-addon"></span>
+            </div>
+            <span id="inputGroupSuccess1Status"></span>
+        </div>
+    </div>
+</form>
+</body>
+</html>

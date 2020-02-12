@@ -1,0 +1,13 @@
+spring:
+  rabbitmq:
+    host: localhost
+    virtual-host: /root
+    username: root
+    password: root
+    port: 5672
+    listener:
+      direct:
+        #开启手动接受
+        acknowledge-mode: manual
+        #设置一次拉取得最大数
+        prefetch: 2

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+</head>
+<body>
+
+<div class="div1">div1</div>
+<div class="div1">div2</div>
+<div class="div3">div3</div>
+<div id="div4">div4</div>
+<input name="username">
+<input name="password">
+
+<script>
+    //通过id获取唯一值
+    var byid = document.getElementById("div4");
+    alert(byid);
+    //通过名字获取对象，返回时一个数组
+    var pass = document.getElementsByName("password");
+    alert(pass.length);
+    //通过Class获取对象，返回一个数组
+    var bn = document.getElementsByClassName("div1");
+    alert(bn.length);
+    //通过标签获取对象，返回一个数组
+    var bt = document.getElementsByTagName("div");
+    alert(bt.length);
+
+</script>
+
+</body>
+</html>

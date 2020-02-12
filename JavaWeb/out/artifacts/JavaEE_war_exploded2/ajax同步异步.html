@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax同步异步</title>
+    <script>
+        function fun() {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {// code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            //第一个参数请求方式，第二个参数响应地址，第三个参数：true为异步，false为同步
+            xmlhttp.open("GET", "AjaxServlet?username=ajax", true);
+            xmlhttp.send();
+
+            //当xmlhttp的就绪状态改变时，触发时间onreadystatechange
+            xmlhttp.onreadystatechange = function () {
+                //判断readyState就绪状态码是否为4，响应状态码是否为200
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    //获取响应结果
+                    alert(xmlhttp.responseText);
+                }
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+
+
+<input type="button" value="点我提交异步请求" onclick="fun();">
+<input>
+</body>
+</html>

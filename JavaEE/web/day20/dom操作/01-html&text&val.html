@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+    <script>
+        $(function () {
+            // 获取myinput 的value值
+            var val = $("#myinput").val();//该方法用来获取value值
+            alert(val);
+            $("#myinput").val("value");//里面传参代表设置该值
+            // 获取mydiv的标签体内容
+            var html = $("#mydiv").html();
+            alert(html);
+            var html1 = $("#mydiv").html("eeeee...");
+            alert(html1);
+            // 获取mydiv文本内容
+            var text = $("#mydiv").text();
+            alert("文本内容" + text);
+            var text = $("#mydiv").text("text被我修改了");
+            alert("文本内容" + text);
+        });
+
+
+    </script>
+
+</head>
+<body>
+<input id="myinput" type="text" name="username" value="张三"/><br/>
+<div id="mydiv"><p><a href="#">标题标签</a></p></div>
+</body>
+</html>

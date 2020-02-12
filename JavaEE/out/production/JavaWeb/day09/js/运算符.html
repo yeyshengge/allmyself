@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //+(-)号
+    //在js中，如果运算数不是运算符所要求的类型，那么js引擎会自动将运算符进行类型转换
+    // *String类型转number类型 ,如果不是数字的字符串会转为NaN
+
+    var a = -111;
+    var b = +111;
+    var b3 = +'AAA';
+    document.write(a + typeof (a) + "<br>");
+    document.write(b + typeof (b) + "<br>");
+    document.write(b3 + typeof (b3) + "<br>");
+
+
+    var c = +"111";
+    document.write(c + typeof (c) + "<br>");
+
+    // *Boolean类型转number类型 ,true为1，false为0;
+    var b1 = +true;
+    var b2 = +false;
+    document.write(b1 + typeof (b1) + "<br>");
+    document.write(b2 + typeof (b2) + "<br>");
+
+</script>
+
+</body>
+</html>

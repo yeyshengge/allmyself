@@ -1,0 +1,14 @@
+spring:
+  rabbitmq:
+    # 就这五个参数
+    addresses: localhost
+    port: 5672
+    username: root
+    password: root
+    virtual-host: /root
+    # 开启confirmCallback回调函数
+    publisher-confirms: true
+    # 开启confirmReturns
+    publisher-returns: true
+server:
+  port: 8081

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态表格</title>
+    <style>
+        div {
+            text-align: center;
+        }
+
+        table {
+            border: 1px solid black;
+            width: 500px;
+        }
+
+        td {
+
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<form method="get">
+    <div>
+        <input type="text" id="id" name="id" placeholder="请输入编号">
+        <input type="text" id="username" name="username" placeholder="请输入用户名">
+        <input type="text" id="gender" name="gender" placeholder="请输入性别">
+        <input type="button" value="提交" id="btn">
+
+        <table align="center">
+            <caption>注册信息</caption>
+            <tr>
+                <td>id</td>
+                <td>用户名</td>
+                <td>性别</td>
+                <td>操作</td>
+            </tr>
+        </table>
+    </div>
+</form>
+
+<script>
+
+
+    var btn = document.getElementById("btn");
+    btn.onclick = function () {
+        var id = document.getElementById("id").value;
+        var username = document.getElementById("username").value;
+        var gender = document.getElementById("gender").value;
+       // var tr = document.createElement("tr");
+        var table = document.getElementsByTagName("table")[0];
+        table.innerHTML += " <tr>\n" +
+            "                <td>" + id + "</td>\n" +
+            "                <td>" + username + "</td>\n" +
+            "                <td>" + gender + "</td>\n" +
+            "                <td><a href='javascript:void(0)' onclick='fun(this)' >删除</a></td>\n" +
+            "            </tr>"
+
+    }
+
+
+    function fun(obj) {
+        var ta = obj.parentNode.parentNode.parentNode;
+        var tr = obj.parentNode.parentNode;
+        ta.removeChild(tr);
+    }
+</script>
+</body>
+</html>

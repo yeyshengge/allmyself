@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="userMapper">
+
+    <!--删除-->
+    <delete id="deleteUser" parameterType="java.lang.Integer">
+        delete from user where id = #{id}
+    </delete>
+
+    <!--修改-->
+    <update id="updateUser" parameterType="com.zps.domain.User">
+        update user set username=#{username},password=#{password} where id=#{id}
+    </update>
+    <!--查询-->
+    <select id="findAll" resultType="com.zps.domain.User">
+        select  * from user
+    </select>
+    <!--增加-->
+    <insert id="insertUser" parameterType="user">
+        insert into user values (#{id},#{username},#{password})
+    </insert>
+
+    <!--查询一个-->
+    <select id="findByOne" parameterType="int" resultType="user">
+       select * from user where id = #{id}
+   </select>
+</mapper>

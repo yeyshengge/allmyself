@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>考试</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="js/bootstrap.min.js"></script>
+    <style>
+        .ltd {
+            height: 60px;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var add = document.getElementById("add");
+            var num1 = document.getElementById("num1");
+            var red = document.getElementById("red");
+            var num = num1.innerHTML;
+            add.onclick = function () {
+                num1.innerText = ++num;
+            }
+            red.onclick = function () {
+                num1.innerText = --num;
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<form>
+    <table border="1px solid black" cellpadding="0" cellspacing="0" align="center">
+        <tr align="center" bgcolor="#CCCCCC" style="width: 30px">
+            <td>商品</td>
+            <td>单价</td>
+            <td>数量</td>
+            <td>小计</td>
+            <td>操作</td>
+        </tr>
+        <tr>
+            <td class="ltd">【5本26.8元】经典儿童文学彩图青少版八十天环游地球中学生语文教学大纲</td>
+            <td>12.60</td>
+            <td>
+                <button><a href="javascript:void(0)" id="red">-</a></button>
+                <span id="num1">0</span>
+                <button><a href="javascript:void(0)" id="add">+</a></button>
+            </td>
+            <td>小计</td>
+            <td><a>删除</a></td>
+        </tr>
+        <tr>
+            <td class="ltd">【2000张贴纸】贴纸书 3-6岁 贴画儿童 贴画书全套12册 贴画 贴纸儿童 汽</td>
+            <td>12.60</td>
+            <td>
+                <button>-</button>
+                <span>0</span>
+                <button>+</button>
+            </td>
+            <td>小计</td>
+            <td><a>删除</a></td>
+        </tr>
+        <tr>
+            <td class="ltd">唐诗三百首+成语故事全2册 一年级课外书 精装注音儿童版 小学生二三年级课外阅读书籍</td>
+            <td>12.60</td>
+            <td>
+                <button>-</button>
+                <span>0</span>
+                <button>+</button>
+            </td>
+            <td>小计</td>
+            <td><a>删除</a></td>
+        </tr>
+        <tr>
+            <td colspan="5"><a style="float: left">清理购物车</a><span style="float: right">已选中1件商品 总计12.60<button
+                    style="background-color: red">去结算</button></span>
+            </td>
+        </tr>
+
+
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../../js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            var citys = $("#city li");//citys是JQuery对象
+
+            /*
+                        //普通js遍历
+
+                        for (var i = 0; i < citys.length; i++) {
+                            alert(i + citys[i].innerHTML);
+                        }
+            */
+
+            //jq对象.each(callback)
+
+            /*
+                        citys.each(function (index, element) {  //element单个js对象
+                            if (element.innerHTML == "上海") {
+                                /!*
+                                如果返回值为false,则结束循环(break)
+                                如果返回值为true,则结束本次循环，继续下次循环(continue)
+                                 *!/
+                                return true;
+                            }
+                            //alert(index + ":" + element.innerHTML);
+                            alert(index + ":" + $(element).html());
+                        });
+            */
+
+            //$.each(object,[callback])
+
+            //使用跟上一个差不多
+            /* $.each(citys, function (index, element) {
+                 alert(index + ":" + $(element).html());
+             })*/
+
+            //
+
+            //for..of  jquery 3.0之后
+            for (e of citys) {
+                alert($(e).html());
+            }
+
+
+        });
+
+    </script>
+</head>
+<body>
+<ul id="city">
+    <li>北京</li>
+    <li>上海</li>
+    <li>天津</li>
+    <li>重庆</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQ与JS相互转换</title>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+
+<div id="div1">div1...</div>
+<div id="div2">div2...</div>
+<script>
+
+    var divs = document.getElementsByTagName("div");
+    //alert(divs);//是一个数组
+    alert(divs.length);
+    for (var i = 0; i < divs.length; i++) {
+        divs[i].innerText = "aaa";
+    }
+    var $div = $("div");
+    //alert($div);//是一个数组
+    // $div.innerText = "ccc";无效
+    $div.html("bbb");
+
+    //jq与js的相互转换
+    //jq  -->  js ：jq对象[索引] 或者 jq对象.get(索引)
+    //js  -->  jq ：$(js对象)
+
+    $div[0].innerText = "ccc";
+    $div[1].innerText = "ddd";
+
+    $(divs).html("eee");
+
+
+</script>
+</body>
+</html>

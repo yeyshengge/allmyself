@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        <bean id="userDao" class="com.zps.dao.impl.UserDaoImpl" init-method="init" destroy-method="destory"></bean>
+    -->
+    <!--    静态方法
+            <bean id="userDao" class="com.zps.factory.UserDaoFactory" factory-method="getUserDao"></bean>
+    -->
+
+    <!-- <bean id="factory" class="com.zps.factory.UserDaoFactory02" ></bean>
+     <bean id="userDao" factory-bean="factory" factory-method="getUserDao"></bean>-->
+
+
+    <!--基本数据类型注入set
+    <bean id="userDao" class="com.zps.dao.impl.UserDaoImpl">
+        <property name="username" value="zhangsan"></property>
+        <property name="age" value="19"></property>
+        </bean>-->
+
+
+    <!--基本数据类型注入构造方法
+    <bean id="userDao" class="com.zps.dao.impl.UserDaoImpl">
+        <constructor-arg name="username" value="lisi"></constructor-arg>
+        <constructor-arg name="age" value="18"></constructor-arg>
+    </bean>-->
+    <!--使用构造方法-->
+    <bean id="userDao" class="com.zps.dao.impl.UserDaoImpl">
+        <constructor-arg name="list">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="map">
+            <map>
+                <entry key="user1" value-ref="user1"></entry>
+                <entry key="user2" value-ref="user2"></entry>
+            </map>
+        </constructor-arg>
+
+        <constructor-arg name="properties">
+            <props>
+                <prop key="str1">字符串1</prop>
+                <prop key="str2">字符串2</prop>
+            </props>
+        </constructor-arg>
+
+    </bean>
+    <bean name="user1" class="com.zps.domain.User">
+        <constructor-arg  name="username"><value>张三</value></constructor-arg>
+        <constructor-arg  name="address"><value>北京</value></constructor-arg>
+    </bean>
+    <bean name="user2" class="com.zps.domain.User">
+        <constructor-arg  name="username"><value>李四</value></constructor-arg>
+        <constructor-arg  name="address"><value>天津</value></constructor-arg>
+    </bean>
+
+    <!--set方法注入list;
+    <bean id="userDao" class="com.zps.dao.impl.UserDaoImpl">
+        <property name="list">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </list>
+        </property>
+        <property name="map">
+            <map>
+                <entry key="user1" value-ref="user1"></entry>
+                <entry key="user2" value-ref="user2"></entry>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="姓名">张三</prop>
+                <prop key="年龄">18</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="user1" class="com.zps.domain.User">
+        <property name="username" value="张三"></property>
+        <property name="address" value="长沙"></property>
+    </bean>
+    <bean id="user2" class="com.zps.domain.User">
+        <property name="username" value="李四"></property>
+        <property name="address" value="上海"></property>
+    </bean>-->
+
+
+    <!--set方法注入第一种写法
+    <bean id="userService" class="com.zps.service.impl.UserServiceImpl">
+       <property name="userDao" ref="userDao"></property>
+   </bean>-->
+
+    <!--set方法注入第二种写法
+    <bean id="userService" class="com.zps.service.impl.UserServiceImpl" p:userDao-ref="userDao" />-->
+
+    <!--构造方法注入-->
+    <bean id="userService" class="com.zps.service.impl.UserServiceImpl">
+        <constructor-arg name="userDao" ref="userDao"></constructor-arg>
+    </bean>
+
+
+</beans>

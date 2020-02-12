@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("../img/register_bg.png");
+    background-repeat: no-repeat;
+}
+
+.out {
+    padding: 10px;
+    border: 8px solid rgb(238, 238, 238);
+    margin: auto;
+    width: 900px;
+    height: 600px;
+    margin-top: 20px;
+    background-color: white;
+}
+
+.left {
+    float: left;
+    width: 220px;
+    height: 200px;
+
+}
+
+.center {
+    margin-top: 50px;
+    float: left;
+    width: 380px;
+    height: 600px;
+
+}
+
+.right {
+    padding: 10px;
+    float: right;
+    width: 160px;
+    height: 200px;
+
+}
+
+.left_frist {
+    margin: 15px;
+    font-size: 25px;
+    color: yellow;
+}
+
+.left_second {
+    margin-left: 15px;
+    margin-top: 5px;
+    font-size: 25px;
+    color: grey;
+}
+
+div a {
+    color: red;
+}
+
+div span {
+    float: right;
+}
+
+.td_left {
+    width: 100px;
+    text-align: right;
+}
+
+.td_right {
+    width: 150px;
+    text-align: left;
+    padding-left: 20px;
+}
+
+tr {
+    margin-top: 20px;
+}
+
+table input {
+    height: 30px;
+    width: 200px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+#in {
+    height: 15px;
+    width: 15px;
+}
+
+#in2 {
+    height: 15px;
+    width: 15px;
+}
+#yan{
+    width: 90px;
+
+}
+td{
+   padding-top: 20px;
+}

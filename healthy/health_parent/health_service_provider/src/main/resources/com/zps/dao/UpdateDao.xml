@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zps.dao.UpdateDao">
+    <update id="updateJob" parameterType="com.zps.pojo.OrderSetting">
+    <!--如果有就更新，如果没有就插入-->
+    insert into t_ordersetting (orderDate,number) values<foreach collection="list" item="item" separator=",">(#{item.orderDate,jdbcType=DATE}, #{item.number,jdbcType=INTEGER}) </foreach>ON DUPLICATE KEY UPDATE number=values(number)
+</update>
+</mapper>
